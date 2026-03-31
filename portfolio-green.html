@@ -1,0 +1,1277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rishitha Korrapati — Data Scientist</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+:root {
+  /* Palette aligned with “Currently / RIT” card (mint surface + forest accents) */
+  --green: #2d6a4f;
+  --green-dark: #1b4332;
+  --green-light: #52b788;
+  --green-pale: #f0faf4;
+  --green-mid: #d8f3dc;
+  --green-border: #a3cfbb;
+  --green-muted: #74c69d;
+  --black: #0a0a0a;
+  --ink: #111827;
+  --ink2: #374151;
+  --ink3: #6b7280;
+  --ink4: #9ca3af;
+  --surface: #ffffff;
+  --surface2: #f9fafb;
+  --surface3: #f3f4f6;
+  --border: #e5e7eb;
+  --border2: #d1d5db;
+}
+
+body {
+  font-family: 'Syne', sans-serif;
+  background: var(--surface);
+  color: var(--ink);
+  line-height: 1.6;
+}
+
+/* NAV */
+nav {
+  position: fixed; top: 0; left: 0; right: 0;
+  z-index: 100;
+  background: rgba(255,255,255,0.94);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  height: 60px;
+  display: flex; align-items: center;
+  padding: 0 48px;
+  justify-content: space-between;
+}
+.nav-logo {
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--black);
+  letter-spacing: -0.03em;
+  text-decoration: none;
+  display: flex; align-items: center; gap: 8px;
+}
+.nav-logo-dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--green-light);
+}
+.nav-links {
+  display: flex; align-items: center; gap: 36px;
+  list-style: none;
+}
+.nav-links a {
+  position: relative;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink3);
+  text-decoration: none;
+  letter-spacing: 0.01em;
+  transition: color 0.18s ease, transform 0.18s ease;
+}
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 100%;
+  height: 1.5px;
+  background: var(--green);
+  transform: scaleX(0.35);
+  transform-origin: left center;
+  opacity: 0;
+  transition: transform 0.18s ease, opacity 0.18s ease;
+}
+.nav-links a:hover {
+  color: var(--green);
+  transform: translateY(-1px);
+}
+.nav-links a:hover::after {
+  transform: scaleX(1);
+  opacity: 1;
+}
+.nav-cta {
+  display: flex; align-items: center; gap: 10px;
+}
+.btn-sm {
+  padding: 8px 18px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  font-family: 'Syne', sans-serif;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.15s;
+  letter-spacing: 0.01em;
+}
+.btn-sm-ghost {
+  background: transparent;
+  color: var(--ink2);
+  border: 1px solid var(--border2);
+}
+.btn-sm-ghost:hover { border-color: var(--green); color: var(--green); }
+.btn-sm-green {
+  background: var(--green);
+  color: #fff;
+  border: 1px solid var(--green);
+}
+.btn-sm-green:hover { background: #155f3a; }
+
+/* HERO */
+#hero {
+  padding-top: 60px;
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-left: 48px;
+  padding-right: 48px;
+  gap: 64px;
+}
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: var(--green-pale);
+  border: 1px solid var(--green-border);
+  border-radius: 99px;
+  padding: 5px 14px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--green);
+  margin-bottom: 24px;
+  font-family: 'IBM Plex Mono', monospace;
+  letter-spacing: 0.02em;
+}
+.hero-badge-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--green-light);
+  animation: blink 2s infinite;
+}
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+.hero-name {
+  font-size: clamp(44px, 5.5vw, 68px);
+  font-weight: 800;
+  color: var(--black);
+  line-height: 1;
+  letter-spacing: -0.04em;
+  margin-bottom: 20px;
+}
+.hero-name span {
+  font-family: 'Instrument Serif', serif;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--green);
+}
+.hero-tagline {
+  font-size: 17px;
+  color: var(--ink2);
+  line-height: 1.7;
+  font-weight: 400;
+  max-width: 440px;
+  margin-bottom: 32px;
+}
+.hero-actions { display: flex; gap: 12px; align-items: center; margin-bottom: 48px; }
+.btn-main {
+  padding: 13px 28px;
+  background: var(--green);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 700;
+  font-family: 'Syne', sans-serif;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.15s;
+  letter-spacing: -0.01em;
+}
+.btn-main:hover { background: #155f3a; }
+.btn-sec {
+  padding: 13px 28px;
+  background: transparent;
+  color: var(--ink2);
+  border: 1px solid var(--border2);
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  font-family: 'Syne', sans-serif;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.15s;
+}
+.btn-sec:hover { border-color: var(--green); color: var(--green); }
+
+.hero-socials { display: flex; gap: 10px; }
+.hero-social {
+  width: 38px; height: 38px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--ink3);
+  text-decoration: none;
+  transition: all 0.15s;
+}
+.hero-social:hover { border-color: var(--green); color: var(--green); background: var(--green-pale); }
+
+.hero-card {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 28px;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+}
+.hero-card::before {
+  content: none;
+}
+.hero-photo {
+  width: 100%;
+  aspect-ratio: 4/3;
+  background: var(--green-mid);
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  flex-direction: column; gap: 8px;
+  color: var(--green);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  margin-bottom: 0;
+  overflow: hidden;
+  position: relative;
+}
+.hero-photo img { width: 100%; height: 100%; object-fit: cover; border-radius: 10px; }
+.hero-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(26, 122, 74, 0.14);
+}
+
+/* SECTIONS */
+.section {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 100px 48px;
+}
+.section-header { margin-bottom: 48px; }
+.section-eyebrow {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--green);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  display: flex; align-items: center; gap: 10px;
+}
+.section-eyebrow::before {
+  content: '';
+  width: 20px; height: 1.5px;
+  background: var(--green-light);
+}
+.section-title {
+  font-size: clamp(30px, 3.6vw, 42px);
+  font-weight: 800;
+  color: var(--black);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+}
+.section-title em {
+  font-family: 'Instrument Serif', serif;
+  font-style: italic;
+  font-weight: 400;
+  color: var(--green);
+}
+
+/* ABOUT */
+#about { background: var(--surface2); }
+#about .inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 100px 48px;
+}
+.about-grid { display: grid; grid-template-columns: 3fr 2fr; gap: 64px; align-items: start; }
+.about-text p {
+  font-size: 17px;
+  color: var(--ink2);
+  line-height: 1.85;
+  font-weight: 400;
+  margin-bottom: 1.2rem;
+}
+.about-text p:first-child {
+  font-family: 'Instrument Serif', serif;
+  font-size: 22px;
+  font-style: italic;
+  color: var(--ink);
+  line-height: 1.5;
+}
+.about-text strong { color: var(--black); }
+.about-aside {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  perspective: 1200px;
+}
+.aside-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 14px;
+  width: min(100%, 470px);
+  transform-style: preserve-3d;
+  box-shadow: 0 2px 10px rgba(17, 24, 39, 0.04);
+  transition: background 0.22s ease, border-color 0.22s ease, color 0.22s ease, transform 0.22s ease, box-shadow 0.22s ease;
+}
+.aside-card-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: var(--ink4);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.aside-card-val {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--ink);
+  line-height: 1.5;
+}
+.aside-card-val span { color: var(--green); }
+.aside-card:hover {
+  background: var(--green-pale);
+  border-color: var(--green-border);
+  transform: translateY(-3px) rotateX(2deg) rotateY(-2deg);
+  box-shadow: 0 14px 28px rgba(26, 122, 74, 0.12), 0 3px 12px rgba(17, 24, 39, 0.08);
+}
+.aside-card:hover .aside-card-label {
+  color: var(--green);
+}
+.aside-card:hover .aside-card-val {
+  color: var(--black);
+}
+.aside-card:hover .aside-card-val span {
+  color: var(--green);
+}
+
+/* EXPERIENCE */
+.exp-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.exp-item {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  gap: 32px;
+  padding: 36px 0;
+  border-bottom: 1px solid var(--border);
+  position: relative;
+}
+.exp-item:first-child { border-top: 1px solid var(--border); }
+.exp-meta { display: grid; gap: 8px; align-content: start; }
+.exp-period {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  color: var(--green);
+  letter-spacing: 0.04em;
+  margin-bottom: 4px;
+  font-weight: 500;
+}
+.exp-where {
+  font-size: 13px;
+  color: var(--ink4);
+  font-family: 'IBM Plex Mono', monospace;
+}
+.exp-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--black);
+  letter-spacing: -0.02em;
+  margin-bottom: 4px;
+}
+.exp-company {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--green);
+  margin-bottom: 14px;
+  font-family: 'IBM Plex Mono', monospace;
+  letter-spacing: 0.02em;
+}
+.exp-company-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  border-radius: 7px;
+  padding: 2px 6px 2px 2px;
+  transition: color 0.2s, border-color 0.2s, transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+.exp-company-link:hover {
+  color: var(--green-dark);
+  border-color: var(--green-border);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(26, 122, 74, 0.12);
+  background: rgba(34, 197, 94, 0.06);
+}
+.exp-company-icon {
+  width: 15px;
+  height: 15px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.7;
+  flex-shrink: 0;
+}
+.exp-company-arrow {
+  font-size: 12px;
+  color: var(--ink4);
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+.exp-company-link:hover .exp-company-arrow {
+  transform: translateX(1px);
+  color: var(--green-dark);
+}
+.exp-desc {
+  font-size: 15px;
+  color: var(--ink2);
+  line-height: 1.8;
+  margin-bottom: 16px;
+  font-weight: 400;
+}
+.metric-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 9px;
+  border-radius: 999px;
+  background: var(--surface3);
+  border: 1px solid var(--border);
+  color: var(--black);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+.tag-row { display: flex; flex-wrap: wrap; gap: 6px; }
+.tag {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  padding: 4px 10px;
+  background: var(--green-pale);
+  color: var(--green);
+  border: 1px solid var(--green-border);
+  border-radius: 5px;
+  font-weight: 500;
+  transition: transform 0.16s ease, box-shadow 0.16s ease, border-color 0.16s ease, color 0.16s ease;
+}
+.tag:hover {
+  transform: translateY(-1px);
+  border-color: var(--green);
+  color: var(--green);
+  box-shadow: 0 2px 10px rgba(34, 197, 94, 0.08);
+}
+
+/* PROJECTS */
+#projects { background: var(--surface2); }
+#projects .inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 100px 48px;
+}
+.proj-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+.proj-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  transition: border-color 0.22s ease, box-shadow 0.22s ease, transform 0.22s ease;
+  position: relative;
+  overflow: hidden;
+}
+.proj-card:hover {
+  border-color: var(--green-border);
+  box-shadow: 0 14px 28px rgba(34,197,94,0.12), 0 4px 12px rgba(17,24,39,0.08);
+  transform: translateY(-4px);
+}
+.proj-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 14px;
+}
+.proj-year {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: var(--black);
+  letter-spacing: 0.05em;
+}
+.proj-arrow {
+  width: 28px; height: 28px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--black);
+  text-decoration: none;
+  font-size: 13px;
+  transition: all 0.15s;
+  flex-shrink: 0;
+}
+.proj-card:hover .proj-arrow { border-color: var(--green); color: var(--green); background: var(--green-pale); }
+.proj-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--black);
+  letter-spacing: -0.02em;
+  line-height: 1.3;
+  margin-bottom: 6px;
+}
+.proj-hook {
+  font-family: 'Instrument Serif', serif;
+  font-style: italic;
+  font-size: 14px;
+  color: var(--green);
+  line-height: 1.5;
+  margin-bottom: 10px;
+}
+.proj-desc {
+  font-size: 13.5px;
+  color: var(--black);
+  line-height: 1.7;
+  flex: 1;
+  margin-bottom: 16px;
+  font-weight: 400;
+}
+.proj-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-top: auto;
+}
+.proj-tags { display: flex; flex-wrap: wrap; gap: 5px; }
+.proj-tag {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  padding: 3px 8px;
+  background: var(--surface3);
+  color: var(--black);
+  border-radius: 4px;
+}
+.proj-links { display: flex; gap: 10px; flex-shrink: 0; margin-left: 8px; }
+.proj-link {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: var(--black);
+  text-decoration: none;
+  font-weight: 500;
+  white-space: nowrap;
+}
+.proj-link:hover { color: var(--green); text-decoration: underline; }
+
+/* SKILLS — flip cards */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 272px));
+  justify-content: center;
+  gap: 12px;
+}
+.skill-flip {
+  perspective: 1100px;
+  min-height: 152px;
+  outline: none;
+}
+.skill-flip:focus-visible {
+  border-radius: 10px;
+  box-shadow: 0 0 0 2px var(--surface), 0 0 0 4px var(--green);
+}
+.skill-flip-inner {
+  position: relative;
+  width: 100%;
+  min-height: 152px;
+  transform-style: preserve-3d;
+  transition: transform 0.65s cubic-bezier(0.4, 0.2, 0.2, 1);
+}
+.skill-flip:hover .skill-flip-inner,
+.skill-flip:focus-within .skill-flip-inner {
+  transform: rotateY(180deg);
+}
+.skill-flip-front,
+.skill-flip-back {
+  position: absolute;
+  inset: 0;
+  border-radius: 10px;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  padding: 14px 14px 12px;
+  display: flex;
+  flex-direction: column;
+}
+.skill-flip-front {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  box-shadow: none;
+  justify-content: flex-start;
+  align-items: stretch;
+  gap: 6px;
+}
+.skill-flip-head {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: baseline;
+  gap: 8px;
+  min-width: 0;
+}
+.skill-flip-back {
+  background: var(--green);
+  border: 1px solid var(--green-dark);
+  transform: rotateY(180deg);
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  overflow-y: auto;
+}
+.skill-back-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.55);
+  margin: 0 0 10px;
+  line-height: 1.2;
+  width: 100%;
+  text-align: center;
+}
+.skill-card-title {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: clamp(13px, 1.45vw, 16px);
+  font-weight: 600;
+  color: var(--green);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  line-height: 1.2;
+  margin: 0;
+  flex: 1 1 auto;
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.skill-count {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1;
+  color: var(--ink4);
+  letter-spacing: 0.04em;
+  user-select: none;
+  pointer-events: none;
+  flex-shrink: 0;
+  opacity: 0.9;
+}
+.skill-flip-hint {
+  margin: 0;
+  margin-top: auto;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  font-weight: 500;
+  color: var(--ink4);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.skill-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 8px;
+  align-content: center;
+  justify-content: center;
+  max-width: 100%;
+}
+.skill-pill {
+  font-size: 11px;
+  font-weight: 500;
+  padding: 5px 11px;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 999px;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.14);
+  transition: background 0.15s, border-color 0.15s;
+}
+.skill-pill:hover {
+  border-color: rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+}
+@media (prefers-reduced-motion: reduce) {
+  .skill-flip { min-height: auto; }
+  .skill-flip-inner {
+    transition: none;
+    transform: none !important;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    min-height: auto;
+  }
+  .skill-flip:hover .skill-flip-inner,
+  .skill-flip:focus-within .skill-flip-inner { transform: none !important; }
+  .skill-flip-front,
+  .skill-flip-back {
+    position: relative;
+    inset: auto;
+    transform: none !important;
+    backface-visibility: visible;
+    -webkit-backface-visibility: visible;
+  }
+  .skill-flip-back { margin-top: 0; border-radius: 0 0 10px 10px; }
+  .skill-flip-front { border-radius: 10px 10px 0 0; }
+}
+
+/* CONTACT */
+#contact-section {
+  background: var(--black);
+  padding: 100px 0;
+}
+.contact-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 48px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+.contact-eyebrow {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: var(--green-light);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  display: flex; align-items: center; gap: 10px;
+}
+.contact-eyebrow::before { content: ''; width: 20px; height: 1.5px; background: var(--green-light); }
+.contact-title {
+  font-size: clamp(36px, 4vw, 52px);
+  font-weight: 800;
+  color: #fff;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  margin-bottom: 20px;
+}
+.contact-title em {
+  font-family: 'Instrument Serif', serif;
+  font-style: italic;
+  font-weight: 400;
+  color: var(--green-light);
+}
+.contact-link-list { display: flex; flex-direction: column; gap: 0; }
+.contact-link {
+  display: flex; align-items: center; gap: 16px;
+  padding: 18px 0;
+  border-bottom: 1px solid #1f2937;
+  text-decoration: none;
+  transition: all 0.15s;
+  cursor: pointer;
+}
+.contact-link:first-child { border-top: 1px solid #1f2937; }
+.contact-link:hover .cl-text { color: var(--green-light); }
+.contact-link:hover .cl-icon-wrap { background: #166534; border-color: #166534; }
+.cl-icon-wrap {
+  width: 36px; height: 36px;
+  border: 1px solid #374151;
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--green-light);
+  background: transparent;
+  transition: all 0.15s;
+  flex-shrink: 0;
+}
+.cl-text {
+  font-size: 15px;
+  font-weight: 500;
+  color: #d1d5db;
+  transition: color 0.15s;
+  flex: 1;
+}
+.cl-arr { color: #374151; font-size: 14px; transition: color 0.15s; }
+.contact-link:hover .cl-arr { color: var(--green-light); }
+
+/* FOOTER */
+footer {
+  background: #050505;
+  padding: 24px 48px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid #111;
+}
+.foot-copy {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: #374151;
+  letter-spacing: 0.05em;
+}
+
+/* REVEAL */
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.72s cubic-bezier(0.22, 1, 0.36, 1), transform 0.72s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-d1 { transition-delay: 0.08s; }
+.reveal-d2 { transition-delay: 0.16s; }
+.reveal-d3 { transition-delay: 0.24s; }
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  #hero { grid-template-columns: 1fr; padding: 100px 24px 60px; }
+  .hero-right { display: none; }
+  .about-grid, .contact-inner { grid-template-columns: 1fr; gap: 32px; }
+  .proj-grid { grid-template-columns: 1fr; }
+  .skills-grid {
+    grid-template-columns: repeat(2, minmax(0, 272px));
+    justify-content: center;
+  }
+  .exp-item { grid-template-columns: 1fr; gap: 8px; }
+  .section, #about .inner, #projects .inner { padding-left: 24px; padding-right: 24px; }
+  .contact-inner { padding: 0 24px; }
+  nav { padding: 0 24px; }
+  .nav-links { display: none; }
+  footer { padding: 20px 24px; flex-direction: column; gap: 8px; }
+}
+@media (max-width: 600px) {
+  .skills-grid {
+    grid-template-columns: minmax(0, 400px);
+    justify-content: center;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">
+    <div class="nav-logo-dot"></div>
+    RK
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact-section">Contact</a></li>
+  </ul>
+  <div class="nav-cta">
+    <a href="#contact-section" class="btn-sm btn-sm-green">Get in touch</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-left reveal">
+    <div class="hero-badge">
+      <div class="hero-badge-dot"></div>
+      MS Data Science · RIT · GPA 3.83
+    </div>
+    <h1 class="hero-name">Rishitha<br><span>Korrapati</span></h1>
+    <p class="hero-tagline">Transforming raw data into real impact through machine learning, NLP, and end-to-end AI pipelines.</p>
+    <div class="hero-actions">
+      <a href="#projects" class="btn-main">View projects</a>
+      <a href="Rishitha_Korrapati_Resume_Grad_F.pdf" target="_blank" rel="noopener noreferrer" class="btn-sec">View resume</a>
+    </div>
+    <div class="hero-socials">
+      <a href="mailto:rk7153@rit.edu" class="hero-social" title="Email">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
+      </a>
+      <a href="https://www.linkedin.com/in/rishitha-korrapati-09a579205/" target="_blank" class="hero-social" title="LinkedIn">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7H10v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+      </a>
+      <a href="https://github.com/RishithaKorrapati" target="_blank" class="hero-social" title="GitHub">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+      </a>
+    </div>
+  </div>
+  <div class="hero-right reveal reveal-d2">
+    <div class="hero-card">
+      <div class="hero-photo">
+        <img src="Linked_profile.jpg" alt="Rishitha Korrapati">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="inner">
+    <div class="section-header reveal">
+      <div class="section-eyebrow">About me</div>
+      <h2 class="section-title">The story <em>so far</em></h2>
+    </div>
+    <div class="about-grid reveal">
+      <div class="about-text">
+        <p>I still remember the first time I cleaned a massive dataset and made sense of it — that thrill never left.</p>
+        <p>I'm a Data Science grad student at RIT (GPA: 3.83), drawn to problems where the data is messy and the answers actually matter. From sentiment pipelines to healthcare dashboards, I've always been most alive when turning raw numbers into something people can act on.</p>
+        <p>As a <strong>Data Science Intern at Mercurial AI</strong>, I built an AI-powered voice assistant using WebRTC, developed semantic search pipelines over 1,000+ medical codes using Pinecone, and cut MRI image-processing time in half — from 180s to 90s.</p>
+        <p>Back at RIT, I serve as a <strong>Graduate Teaching Assistant for Neural Networks</strong>, fine-tuning LLMs and experimenting with few-shot prompting across DeepSeek and Gemini. I work across Python, SQL, NLP, and machine learning — but beyond the tools, I care about the <em>why</em>.</p>
+      </div>
+      <div class="about-aside">
+        <div class="aside-card">
+          <div class="aside-card-label">Currently</div>
+          <div class="aside-card-val">MS Data Science @ RIT<br><span>Graduate TA · Neural Networks</span></div>
+        </div>
+        <div class="aside-card">
+          <div class="aside-card-label">Location</div>
+          <div class="aside-card-val">Rochester, New York</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience" class="section">
+  <div class="section-header reveal">
+    <div class="section-eyebrow">Experience</div>
+    <h2 class="section-title">Where I've <em>worked</em></h2>
+  </div>
+  <div class="exp-timeline reveal">
+    <div class="exp-item">
+      <div class="exp-meta">
+        <div class="exp-period">Jan 2026 — Present</div>
+        <div class="exp-where">Rochester, NY</div>
+      </div>
+      <div class="exp-body">
+        <div class="exp-title">Graduate Teaching Assistant</div>
+        <div class="exp-company">
+          <a class="exp-company-link" href="https://www.rit.edu/" target="_blank" rel="noopener noreferrer">
+            <svg class="exp-company-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 21h18"/><path d="M5 21V9l7-4 7 4v12"/><path d="M9 21v-6h6v6"/><path d="M7 12h.01"/><path d="M17 12h.01"/></svg>
+            <span>RIT · DSCI 640 — Neural Networks</span>
+            <span class="exp-company-arrow" aria-hidden="true">↗</span>
+          </a>
+        </div>
+        <p class="exp-desc">Developed an end-to-end pipeline for obsolete comment detection using TinyLLaMA (1.1B) with LoRA fine-tuning, reaching <span class="metric-pill">77.32% accuracy</span> and 0.766 F1-score on 1,000+ samples. Improved results further with zero and few-shot prompting, scaling across DeepSeek and Gemini LLMs. Also assist in grading assignments with consistency and fairness.</p>
+        <div class="tag-row">
+          <span class="tag">TinyLLaMA</span><span class="tag">LoRA</span><span class="tag">DeepSeek</span><span class="tag">Gemini</span><span class="tag">Few-shot Prompting</span>
+        </div>
+      </div>
+    </div>
+    <div class="exp-item">
+      <div class="exp-meta">
+        <div class="exp-period">Aug – Dec 2025</div>
+        <div class="exp-where">Remote</div>
+      </div>
+      <div class="exp-body">
+        <div class="exp-title">Data Science Intern</div>
+        <div class="exp-company">
+          <a class="exp-company-link" href="https://www.mercurial-ai.com/" target="_blank" rel="noopener noreferrer">
+            <svg class="exp-company-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a4 4 0 0 1 8 0v2"/><path d="M3 11h18"/></svg>
+            <span>Mercurial AI, Inc.</span>
+            <span class="exp-company-arrow" aria-hidden="true">↗</span>
+          </a>
+        </div>
+        <p class="exp-desc">Built a real-time AI-powered voice assistant using WebRTC and low-latency audio streaming for an MRI scan application. Developed semantic search pipelines over 1,000+ medical codes using Pinecone vector databases and optimized MRI image-processing pipelines, reducing runtime from <span class="metric-pill">180s to 90s</span>.</p>
+        <div class="tag-row">
+          <span class="tag">WebRTC</span><span class="tag">Pinecone</span><span class="tag">OpenAI Realtime API</span><span class="tag">Python</span><span class="tag">Multiprocessing</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="inner">
+    <div class="section-header reveal">
+      <div class="section-eyebrow">Projects</div>
+      <h2 class="section-title">Selected <em>work</em></h2>
+    </div>
+    <div class="proj-grid reveal">
+
+      <div class="proj-card">
+        <div class="proj-card-top">
+          <div class="proj-year">2025</div>
+          <a href="https://github.com/RishithaKorrapati/Superstore_EDA" target="_blank" rel="noopener noreferrer" class="proj-arrow" aria-label="Superstore EDA GitHub">
+            <svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 0C5.373 0 0 5.373 0 12c0 5.303 3.438 9.8 8.205 11.385.6.112.82-.26.82-.577v-2.165c-3.338.726-4.034-1.416-4.034-1.416-.546-1.386-1.333-1.755-1.333-1.755-1.09-.745.082-.729.082-.729 1.206.085 1.84 1.238 1.84 1.238 1.071 1.834 2.809 1.304 3.495.997.108-.775.42-1.304.762-1.604-2.665-.305-5.466-1.334-5.466-5.931 0-1.311.47-2.381 1.236-3.221-.124-.303-.536-1.524.116-3.176 0 0 1.009-.322 3.303 1.23A11.52 11.52 0 0 1 12 5.8c1.02.005 2.047.138 3.005.404 2.293-1.552 3.301-1.23 3.301-1.23.653 1.652.241 2.873.118 3.176.768.84 1.235 1.91 1.235 3.221 0 4.609-2.803 5.624-5.475 5.921.431.372.815 1.102.815 2.222v3.293c0 .319.218.694.825.576C20.565 21.798 24 17.302 24 12c0-6.627-5.373-12-12-12z"/></svg>
+          </a>
+        </div>
+        <div class="proj-title">Superstore Sales — EDA & Profitability Analysis</div>
+        <div class="proj-hook">Can shipping speed affect profit? Why are some top-selling cities still losing money?</div>
+        <p class="proj-desc">Explored 9.9K rows of sales data across 6 focused questions. Philadelphia loses money despite strong sales, copiers stay profitable at 30–40% discounts, and the Consumer segment drives the most revenue.</p>
+        <div class="proj-footer">
+          <div class="proj-tags"><span class="proj-tag">Python</span><span class="proj-tag">Pandas</span><span class="proj-tag">Seaborn</span></div>
+          <div class="proj-links"><a href="https://www.linkedin.com/posts/rishitha-korrapati-09a579205_eda-datascience-python-activity-7355688884359352320-z4tr?utm_source=share&utm_medium=member_desktop&rcm=ACoAADQ7QDYBJli4K5oxO7L-8RxymFDKQA3uyQg" target="_blank" rel="noopener noreferrer" class="proj-link">Case Study →</a></div>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-card-top">
+          <div class="proj-year">2025</div>
+          <a href="https://github.com/RishithaKorrapati/CreditCard_CaseStudy" target="_blank" rel="noopener noreferrer" class="proj-arrow" aria-label="Credit Card Case Study GitHub">
+            <svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 0C5.373 0 0 5.373 0 12c0 5.303 3.438 9.8 8.205 11.385.6.112.82-.26.82-.577v-2.165c-3.338.726-4.034-1.416-4.034-1.416-.546-1.386-1.333-1.755-1.333-1.755-1.09-.745.082-.729.082-.729 1.206.085 1.84 1.238 1.84 1.238 1.071 1.834 2.809 1.304 3.495.997.108-.775.42-1.304.762-1.604-2.665-.305-5.466-1.334-5.466-5.931 0-1.311.47-2.381 1.236-3.221-.124-.303-.536-1.524.116-3.176 0 0 1.009-.322 3.303 1.23A11.52 11.52 0 0 1 12 5.8c1.02.005 2.047.138 3.005.404 2.293-1.552 3.301-1.23 3.301-1.23.653 1.652.241 2.873.118 3.176.768.84 1.235 1.91 1.235 3.221 0 4.609-2.803 5.624-5.475 5.921.431.372.815 1.102.815 2.222v3.293c0 .319.218.694.825.576C20.565 21.798 24 17.302 24 12c0-6.627-5.373-12-12-12z"/></svg>
+          </a>
+        </div>
+        <div class="proj-title">Credit Card Default Analysis — SQL Case Study</div>
+        <div class="proj-hook">Why do some customers default even after 6 months of perfect on-time payments?</div>
+        <p class="proj-desc">Analyzed 30,000 records across 3 case-study-style queries. Most defaults cluster in the 25–40 age range — recent payment behavior alone isn't enough to predict credit risk.</p>
+        <div class="proj-footer">
+          <div class="proj-tags"><span class="proj-tag">PostgreSQL</span><span class="proj-tag">SQL</span></div>
+          <div class="proj-links"><a href="https://www.linkedin.com/posts/rishitha-korrapati-09a579205_sql-dataanalytics-postgresql-activity-7353459589599629313-hllz?utm_source=share&utm_medium=member_desktop&rcm=ACoAADQ7QDYBJli4K5oxO7L-8RxymFDKQA3uyQg" target="_blank" rel="noopener noreferrer" class="proj-link">Case Study →</a></div>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-card-top">
+          <div class="proj-year">2025</div>
+          <a href="https://github.com/soorajmanoj/Bias-in-AI-Generated-Travel-Narratives" target="_blank" rel="noopener noreferrer" class="proj-arrow" aria-label="Bias project GitHub">
+            <svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 0C5.373 0 0 5.373 0 12c0 5.303 3.438 9.8 8.205 11.385.6.112.82-.26.82-.577v-2.165c-3.338.726-4.034-1.416-4.034-1.416-.546-1.386-1.333-1.755-1.333-1.755-1.09-.745.082-.729.082-.729 1.206.085 1.84 1.238 1.84 1.238 1.071 1.834 2.809 1.304 3.495.997.108-.775.42-1.304.762-1.604-2.665-.305-5.466-1.334-5.466-5.931 0-1.311.47-2.381 1.236-3.221-.124-.303-.536-1.524.116-3.176 0 0 1.009-.322 3.303 1.23A11.52 11.52 0 0 1 12 5.8c1.02.005 2.047.138 3.005.404 2.293-1.552 3.301-1.23 3.301-1.23.653 1.652.241 2.873.118 3.176.768.84 1.235 1.91 1.235 3.221 0 4.609-2.803 5.624-5.475 5.921.431.372.815 1.102.815 2.222v3.293c0 .319.218.694.825.576C20.565 21.798 24 17.302 24 12c0-6.627-5.373-12-12-12z"/></svg>
+          </a>
+        </div>
+        <div class="proj-title">Bias in AI-Generated Travel Narratives</div>
+        <div class="proj-hook">Do Western LLMs handle cultural sensitivity differently than Indic models?</div>
+        <p class="proj-desc">Built a benchmark dataset from YouTube comments on Indian travel vlogs. Implemented a fairness pipeline comparing GPT-4 and Gemini against IndicBERT and Bhashini.</p>
+        <div class="proj-footer">
+          <div class="proj-tags"><span class="proj-tag">Python</span><span class="proj-tag">NLP</span><span class="proj-tag">LLMs</span></div>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-card-top">
+          <div class="proj-year">2024</div>
+        </div>
+        <div class="proj-title">Task Master — Collaborative Task Management App</div>
+        <div class="proj-hook">A full-stack app for teams to register, create groups, and manage tasks.</div>
+        <p class="proj-desc">Built following Agile Scrum methodology with sprint planning, stand-ups, and backlog grooming. Integrated APIs and automated test cases across a cross-functional team.</p>
+        <div class="proj-footer">
+          <div class="proj-tags"><span class="proj-tag">Full-Stack</span><span class="proj-tag">Agile</span><span class="proj-tag">API</span></div>
+          <div class="proj-links"><a href="https://youtu.be/ZEQ-I7XQmjs" target="_blank" rel="noopener noreferrer" class="proj-link">Demo →</a></div>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-card-top">
+          <div class="proj-year">2024</div>
+        </div>
+        <div class="proj-title">Healthcare Risk Visualization Dashboard</div>
+        <div class="proj-hook">What risk factors are most linked to heart disease across 250K+ records?</div>
+        <p class="proj-desc">Tableau dashboard integrating 7+ chart types from BRFSS 2015 data. Flat ST slope patients had 380+ heart disease cases; avg Oldpeak for diseased patients (4.5) vs without (2.9).</p>
+        <div class="proj-footer">
+          <div class="proj-tags"><span class="proj-tag">Tableau</span><span class="proj-tag">BRFSS 2015</span></div>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-card-top">
+          <div class="proj-year">2023</div>
+        </div>
+        <div class="proj-title">Twitter Sentiment Analysis — Comparative Study</div>
+        <div class="proj-hook">Which ML model and feature set works best for real-world tweet sentiment?</div>
+        <p class="proj-desc">End-to-end ETL on 9.6K tweets. Tested Decision Trees, Logistic Regression, and Random Forest across BoW, TF-IDF, and Bigrams. Best: 68.03% with a soft-voting ensemble.</p>
+        <div class="proj-footer">
+          <div class="proj-tags"><span class="proj-tag">Python</span><span class="proj-tag">Scikit-learn</span><span class="proj-tag">NLTK</span></div>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-card-top">
+          <div class="proj-year">2023</div>
+        </div>
+        <div class="proj-title">News Article Summarization & Sentiment Analysis</div>
+        <div class="proj-hook">Can one app fetch, analyze, and summarize the news in real time?</div>
+        <p class="proj-desc">Streamlit app pulling live news via Google News API. Evaluated 3 sentiment models and 5 summarization models; selected VADER + BART on accuracy and ROUGE-1: 0.359.</p>
+        <div class="proj-footer">
+          <div class="proj-tags"><span class="proj-tag">Streamlit</span><span class="proj-tag">BART</span><span class="proj-tag">VADER</span></div>
+          <div class="proj-links"><a href="btech_capstone.pdf" target="_blank" rel="noopener noreferrer" class="proj-link">Report →</a></div>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-card-top">
+          <div class="proj-year">2022</div>
+        </div>
+        <div class="proj-title">Uber Ride Data Analysis — New York City</div>
+        <div class="proj-hook">Where, when, and how are 4.5M Uber rides distributed across NYC?</div>
+        <p class="proj-desc">Explored temporal and spatial demand patterns across NYC boroughs. Generated time series plots, heatmaps, and bar charts surfacing peak hours and weekday patterns.</p>
+        <div class="proj-footer">
+          <div class="proj-tags"><span class="proj-tag">R</span><span class="proj-tag">ggplot2</span></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" class="section">
+  <div class="section-header reveal">
+    <div class="section-eyebrow">Technical skills</div>
+    <h2 class="section-title">What I <em>work with</em></h2>
+  </div>
+  <div class="skills-grid reveal">
+    <div class="skill-flip" tabindex="0" role="group" aria-label="Languages. Four skills. Hover or focus to reveal.">
+      <div class="skill-flip-inner">
+        <div class="skill-flip-front">
+          <div class="skill-flip-head">
+            <div class="skill-card-title">Languages</div>
+            <span class="skill-count">4</span>
+          </div>
+          <p class="skill-flip-hint">hover to explore →</p>
+        </div>
+        <div class="skill-flip-back">
+          <p class="skill-back-label" aria-hidden="true">Languages</p>
+          <div class="skill-list">
+            <span class="skill-pill">Python</span><span class="skill-pill">SQL</span><span class="skill-pill">R</span><span class="skill-pill">Java</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="skill-flip" tabindex="0" role="group" aria-label="ML and Deep Learning. Five skills. Hover or focus to reveal.">
+      <div class="skill-flip-inner">
+        <div class="skill-flip-front">
+          <div class="skill-flip-head">
+            <div class="skill-card-title">ML / Deep Learning</div>
+            <span class="skill-count">5</span>
+          </div>
+          <p class="skill-flip-hint">hover to explore →</p>
+        </div>
+        <div class="skill-flip-back">
+          <p class="skill-back-label" aria-hidden="true">ML / Deep Learning</p>
+          <div class="skill-list">
+            <span class="skill-pill">PyTorch</span><span class="skill-pill">TensorFlow</span><span class="skill-pill">Scikit-learn</span><span class="skill-pill">Keras</span><span class="skill-pill">OpenCV</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="skill-flip" tabindex="0" role="group" aria-label="NLP and AI. Six skills. Hover or focus to reveal.">
+      <div class="skill-flip-inner">
+        <div class="skill-flip-front">
+          <div class="skill-flip-head">
+            <div class="skill-card-title">NLP & AI</div>
+            <span class="skill-count">6</span>
+          </div>
+          <p class="skill-flip-hint">hover to explore →</p>
+        </div>
+        <div class="skill-flip-back">
+          <p class="skill-back-label" aria-hidden="true">NLP &amp; AI</p>
+          <div class="skill-list">
+            <span class="skill-pill">NLTK</span><span class="skill-pill">Transformers</span><span class="skill-pill">LLMs</span><span class="skill-pill">LoRA</span><span class="skill-pill">RAG</span><span class="skill-pill">Few-shot</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="skill-flip" tabindex="0" role="group" aria-label="Data and Vector DBs. Four skills. Hover or focus to reveal.">
+      <div class="skill-flip-inner">
+        <div class="skill-flip-front">
+          <div class="skill-flip-head">
+            <div class="skill-card-title">Data & Vector DBs</div>
+            <span class="skill-count">4</span>
+          </div>
+          <p class="skill-flip-hint">hover to explore →</p>
+        </div>
+        <div class="skill-flip-back">
+          <p class="skill-back-label" aria-hidden="true">Data &amp; Vector DBs</p>
+          <div class="skill-list">
+            <span class="skill-pill">Pinecone</span><span class="skill-pill">FAISS</span><span class="skill-pill">Pandas</span><span class="skill-pill">NumPy</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="skill-flip" tabindex="0" role="group" aria-label="Visualization. Five skills. Hover or focus to reveal.">
+      <div class="skill-flip-inner">
+        <div class="skill-flip-front">
+          <div class="skill-flip-head">
+            <div class="skill-card-title">Visualization</div>
+            <span class="skill-count">5</span>
+          </div>
+          <p class="skill-flip-hint">hover to explore →</p>
+        </div>
+        <div class="skill-flip-back">
+          <p class="skill-back-label" aria-hidden="true">Visualization</p>
+          <div class="skill-list">
+            <span class="skill-pill">Tableau</span><span class="skill-pill">Power BI</span><span class="skill-pill">Seaborn</span><span class="skill-pill">Matplotlib</span><span class="skill-pill">ggplot2</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="skill-flip" tabindex="0" role="group" aria-label="Tools and APIs. Five skills. Hover or focus to reveal.">
+      <div class="skill-flip-inner">
+        <div class="skill-flip-front">
+          <div class="skill-flip-head">
+            <div class="skill-card-title">Tools & APIs</div>
+            <span class="skill-count">5</span>
+          </div>
+          <p class="skill-flip-hint">hover to explore →</p>
+        </div>
+        <div class="skill-flip-back">
+          <p class="skill-back-label" aria-hidden="true">Tools &amp; APIs</p>
+          <div class="skill-list">
+            <span class="skill-pill">Git</span><span class="skill-pill">OpenAI API</span><span class="skill-pill">Gemini API</span><span class="skill-pill">Streamlit</span><span class="skill-pill">WebRTC</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact-section">
+  <div class="contact-inner reveal">
+    <div class="contact-left">
+      <div class="contact-eyebrow">Contact</div>
+      <h2 class="contact-title">Let's <em>connect</em></h2>
+    </div>
+    <div class="contact-right">
+      <div class="contact-link-list">
+        <a href="mailto:rk7153@rit.edu" class="contact-link">
+          <div class="cl-icon-wrap"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg></div>
+          <span class="cl-text">rk7153@rit.edu</span>
+          <span class="cl-arr">→</span>
+        </a>
+        <a href="https://www.linkedin.com/in/rishitha-korrapati-09a579205/" target="_blank" class="contact-link">
+          <div class="cl-icon-wrap"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7H10v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></div>
+          <span class="cl-text">LinkedIn</span>
+          <span class="cl-arr">→</span>
+        </a>
+        <a href="https://github.com/RishithaKorrapati" target="_blank" class="contact-link">
+          <div class="cl-icon-wrap"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg></div>
+          <span class="cl-text">GitHub</span>
+          <span class="cl-arr">→</span>
+        </a>
+        <a href="tel:+15855092821" class="contact-link">
+          <div class="cl-icon-wrap"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+          <span class="cl-text">+1 (585) 509-2821</span>
+          <span class="cl-arr">→</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span class="foot-copy">Rishitha Korrapati</span>
+  <span class="foot-copy">rk7153@rit.edu</span>
+</footer>
+
+<script>
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.08 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
